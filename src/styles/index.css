@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+@import './variables.css';
+
+html,
+body {
+  scroll-behavior: smooth;
+  font-size: 20px;
+}
