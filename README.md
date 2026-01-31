@@ -46,3 +46,8 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### JSON-SERVER 
+```sh
+npm run api
+```

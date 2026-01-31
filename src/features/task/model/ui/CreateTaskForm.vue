@@ -2,13 +2,17 @@
 import { ref } from 'vue'
 import { useTaskStore } from '../task.store'
 
+const props = defineProps<{
+  projectId: string
+}>()
+
 const title = ref('')
 const taskStore = useTaskStore()
 
 const submit = async () => {
   if (!title.value.trim()) return
 
-  await taskStore.createTask(title.value.trim())
+  await taskStore.createTaskOptimistic(title.value.trim(), props.projectId)
   title.value = ''
 }
 </script>

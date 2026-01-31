@@ -13,14 +13,11 @@ const props = defineProps<{
 const taskStore = useTaskStore()
 const router = useRouter()
 
-const projectId = Number(props.id)
+const projectId = props.id
 
 if (Number.isNaN(projectId)) {
   router.replace('/404')
 }
-// else {
-//   taskStore.setCurrentProjectId(projectId)
-// }
 
 onMounted(() => {
   taskStore.fetchByProjectId(projectId)
@@ -30,9 +27,13 @@ watch(
   () => props.id,
   (newId) => {
     taskStore.clearTasks()
-    taskStore.fetchByProjectId(Number(newId))
+    taskStore.fetchByProjectId(newId)
   },
 )
+const onDelete = (id: string) => {
+  taskStore.deleteTaskOptimistic(id)
+  console.log(taskStore.tasks[+props.id])
+}
 </script>
 
 <template>
@@ -42,12 +43,19 @@ watch(
     <div v-else-if="taskStore.error">Error loading tasks: {{ taskStore.error }}</div>
     <div v-else-if="taskStore.tasks.length === 0">Tasks are not found</div>
     <ul v-else>
-      <li v-for="task in taskStore.tasks" :key="task.id">
+      <li
+        v-for="task in taskStore.tasks"
+        :key="task.id"
+        :class="{ 'opacity-50': task.isOptimistic }"
+      >
         {{ task.title }} - {{ task.isCompleted }}
+        <button @click="onDelete(task.id)" class="border rounded-2xl px-2 py- cursor-pointer">
+          X
+        </button>
       </li>
     </ul>
 
-    <create-task-form />
+    <create-task-form :projectId="props.id" />
   </div>
 </template>
 

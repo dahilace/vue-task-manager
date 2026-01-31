@@ -1,9 +1,10 @@
 export interface ITask {
-  id: number
-  projectId?: number
+  id: string
+  projectId: string
   title: string
-  isCompleted: boolean
   description?: string
+  isCompleted: boolean
+  isOptimistic?: boolean
   createdAt: string
 }
 

@@ -7,8 +7,8 @@ import { RouterView } from 'vue-router'
 
 <template>
   <div class="wrapper flex flex-col min-h-screen relative">
-    <app-header class="sticky top-0 bg-amber-50 px-1 py-4"></app-header>
-    <main class="main bg-blue-50 px-1 py-4 grow">
+    <app-header class="sticky top-0 z-1"></app-header>
+    <main class="main bg-blue-50 px-1 py-8 grow">
       I am main cointent
       <router-view />
     </main>
