@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useTaskStore } from '../task.store'
+import { useTaskStore } from '../model/task.store'
 
 const props = defineProps<{
   projectId: string
