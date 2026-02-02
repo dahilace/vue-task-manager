@@ -18,6 +18,13 @@ server.use((req, res, next) => {
 })
 
 server.use(middlewares)
+
+// Fallback test
+
+// server.delete('/tasks/:id', (req, res) => {
+//   return res.status(500).json({ error: 'Server failed' })
+// })
+
 server.use(router)
 
 server.listen(3001, () => {

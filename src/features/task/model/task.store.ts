@@ -27,6 +27,8 @@ export const useTaskStore = defineStore('tasks', {
     },
 
     async createTaskOptimistic(title: string, projectId: string) {
+      this.isCreatingTask = true
+
       const tempId = Date.now().toString()
       const optimisticTask: ITask = {
         id: tempId,
@@ -49,6 +51,8 @@ export const useTaskStore = defineStore('tasks', {
         this.tasks = this.tasks.filter((task) => task.id !== tempId)
         this.error = 'Task creation failed | ' + e
       }
+
+      this.isCreatingTask = false
     },
 
     async deleteTaskOptimistic(id: string) {

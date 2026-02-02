@@ -11,6 +11,8 @@ export const taskApi = {
     return http.post<ITask>('/tasks', task)
   },
   deleteTask(id: string) {
+    // return http.delete(`/tasks/${id}`,)
     return http.delete(`/tasks/${id}`,)
   }
 }
+

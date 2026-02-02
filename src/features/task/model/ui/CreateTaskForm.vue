@@ -11,8 +11,7 @@ const taskStore = useTaskStore()
 
 const submit = async () => {
   if (!title.value.trim()) return
-
-  await taskStore.createTaskOptimistic(title.value.trim(), props.projectId)
+  taskStore.createTaskOptimistic(title.value.trim(), props.projectId)
   title.value = ''
 }
 </script>

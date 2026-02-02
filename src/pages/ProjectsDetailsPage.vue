@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useTaskStore } from '@/features/task/model/task.store'
+import { useMessageStore } from '@/shared/ui/app-message/app-message.store'
+
 import { onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -11,6 +13,8 @@ const props = defineProps<{
 }>()
 
 const taskStore = useTaskStore()
+const messageStore = useMessageStore()
+
 const router = useRouter()
 
 const projectId = props.id
@@ -30,9 +34,14 @@ watch(
     taskStore.fetchByProjectId(newId)
   },
 )
-const onDelete = (id: string) => {
-  taskStore.deleteTaskOptimistic(id)
-  console.log(taskStore.tasks[+props.id])
+const onDelete = async (id: string) => {
+  if (confirm('Do you want to delete this task?')) {
+    await taskStore.deleteTaskOptimistic(id)
+
+    if (taskStore.error) {
+      messageStore.showMessage(taskStore.error, 'error')
+    }
+  }
 }
 </script>
 
@@ -40,7 +49,6 @@ const onDelete = (id: string) => {
   <div>
     <h2>Project Details Page {{ id }}</h2>
     <task-skeleton v-if="taskStore.isLoading" />
-    <div v-else-if="taskStore.error">Error loading tasks: {{ taskStore.error }}</div>
     <div v-else-if="taskStore.tasks.length === 0">Tasks are not found</div>
     <ul v-else>
       <li
@@ -49,7 +57,11 @@ const onDelete = (id: string) => {
         :class="{ 'opacity-50': task.isOptimistic }"
       >
         {{ task.title }} - {{ task.isCompleted }}
-        <button @click="onDelete(task.id)" class="border rounded-2xl px-2 py- cursor-pointer">
+        <button
+          @click="onDelete(task.id)"
+          :disabled="task.isOptimistic"
+          class="border rounded-2xl px-2 cursor-pointer"
+        >
           X
         </button>
       </li>
