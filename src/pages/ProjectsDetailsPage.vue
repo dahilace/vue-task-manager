@@ -5,8 +5,8 @@ import { useMessageStore } from '@/shared/ui/app-message/app-message.store'
 import { onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
-import TaskSkeleton from '@/features/task/model/ui/TaskSkeleton.vue'
-import CreateTaskForm from '@/features/task/model/ui/CreateTaskForm.vue'
+import TaskSkeleton from '@/features/task/ui/TaskSkeleton.vue'
+import CreateTaskForm from '@/features/task/ui/CreateTaskForm.vue'
 
 const props = defineProps<{
   id: string
