@@ -9,7 +9,7 @@ import { RouterView } from 'vue-router'
 <template>
   <div class="wrapper flex flex-col min-h-screen relative">
     <app-header class="sticky top-0 z-1"></app-header>
-    <main class="main bg-blue-50 px-1 py-8 grow">
+    <main class="main px-1 py-8 gorw">
       I am main cointent
       <router-view />
     </main>
@@ -18,8 +18,4 @@ import { RouterView } from 'vue-router'
   </div>
 </template>
 
-<style scoped>
-.main {
-  height: 150vh;
-}
-</style>
+<style scoped></style>

@@ -9,7 +9,10 @@ defineProps<{
 </script>
 
 <template>
-  <component :is="tag || 'div'" class="flex gap-1 list-none counter-reset">
+  <component
+    :is="tag || 'div'"
+    class="flex flex-col gap-4 px-4 py-2 list-none counter-reset"
+  >
     <project-item
       tag="li"
       v-for="item in projects"
@@ -31,9 +34,9 @@ defineProps<{
 .counter-item::before {
   content: counter(item);
   position: absolute;
-  top: 0;
-  right: -0.15em;
-  font: 4em sans-serif;
-  opacity: 0.07;
+  top: 4px;
+  left: 4px;
+  font: 1em sans-serif;
+  opacity: 0.5;
 }
 </style>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useProjectStore } from '@/features/project/model/project.store'
+import { useProjectStore } from '@/entities/project/model/project.store'
 import { onMounted } from 'vue'
 import ProjectList from '@/entities/project/ui/ProjectList.vue'
+import CreateProjectForm from '@/features/project/ui/CreateProjectForm.vue'
 
 const projectStore = useProjectStore()
 
@@ -11,8 +12,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <h2>Projects</h2>
+  <div class="flex flex-col">
+    <create-project-form class="self-center" />
+    <h2>Projects:</h2>
 
     <div v-if="projectStore.isLoading">Loading projects...</div>
     <div v-else-if="projectStore.error">Error loading projects: {{ projectStore.error }}</div>

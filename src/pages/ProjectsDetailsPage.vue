@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTaskStore } from '@/features/task/model/task.store'
+import { useTaskStore } from '@/entities/task/model/task.store'
 import { useMessageStore } from '@/shared/ui/app-message/app-message.store'
 
 import { onMounted, watch } from 'vue'
@@ -47,27 +47,30 @@ const onDelete = async (id: string) => {
 
 <template>
   <div>
-    <h2>Project Details Page {{ id }}</h2>
-    <task-skeleton v-if="taskStore.isLoading" />
-    <div v-else-if="taskStore.tasks.length === 0">Tasks are not found</div>
-    <ul v-else>
-      <li
-        v-for="task in taskStore.tasks"
-        :key="task.id"
-        :class="{ 'opacity-50': task.isOptimistic }"
-      >
-        {{ task.title }} - {{ task.isCompleted }}
-        <button
-          @click="onDelete(task.id)"
-          :disabled="task.isOptimistic"
-          class="border rounded-2xl px-2 cursor-pointer"
+    <router-link class="underline" to="/projects">Back to projects</router-link>
+    <div>
+      <h2>Project Details Page {{ id }}</h2>
+      <task-skeleton v-if="taskStore.isLoading" />
+      <div v-else-if="taskStore.tasks.length === 0">Tasks are not found</div>
+      <ul v-else>
+        <li
+          v-for="task in taskStore.tasks"
+          :key="task.id"
+          :class="{ 'opacity-50': task.isOptimistic }"
         >
-          X
-        </button>
-      </li>
-    </ul>
+          {{ task.title }} - {{ task.isCompleted }}
+          <button
+            @click="onDelete(task.id)"
+            :disabled="task.isOptimistic"
+            class="border rounded-2xl px-2 cursor-pointer"
+          >
+            X
+          </button>
+        </li>
+      </ul>
 
-    <create-task-form :projectId="props.id" />
+      <create-task-form :projectId="props.id" />
+    </div>
   </div>
 </template>
 

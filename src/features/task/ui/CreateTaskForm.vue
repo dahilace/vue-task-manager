@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useTaskStore } from '../model/task.store'
+import { useTaskStore } from '../../../entities/task/model/task.store'
+
+import AppBtn from '@/shared/ui/app-btn/AppBtn.vue'
 
 const props = defineProps<{
   projectId: string
@@ -24,18 +26,12 @@ const submit = async () => {
       placeholder="Enter task title"
       class="border p-2 rounded w-full"
     />
-    <button
+    <app-btn
+      :is-disabled="!!taskStore.isCreatingTask"
       :disabled="taskStore.isCreatingTask || title.trim() === ''"
-      :class="
-        taskStore.isCreatingTask
-          ? 'bg-gray-500 cursor-not-allowed'
-          : 'bg-blue-500 hover:bg-blue-600'
-      "
-      type="submit"
-      class="mt-2 px-4 py-2 text-white rounded cursor-pointer"
     >
       Create Task
-    </button>
+    </app-btn>
   </form>
 </template>
 
