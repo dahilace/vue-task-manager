@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteLocation } from 'vue-router'
 
 import ProjectsPage from '@/pages/ProjectsPage.vue'
 import ProjectsDetailsPage from '@/pages/ProjectsDetailsPage.vue'
@@ -9,25 +9,34 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/projects'
+      redirect: '/projects',
     },
     {
       path: '/projects',
       name: 'projects',
-      component: ProjectsPage
+      component: ProjectsPage,
+      meta: {
+        title: 'Home'
+      }
     },
     {
       path: '/projects/:id',
       name: 'project-details',
       component: ProjectsDetailsPage,
-      props: true
+      props: true,
+      meta: {
+        title: (route: RouteLocation) => `Vue Project | ${route.params.id}`
+      }
     },
 
     //...
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: NotFoundPage
+      component: NotFoundPage,
+      meta: {
+        title: 'Not Found'
+      }
     }
   ],
 })
