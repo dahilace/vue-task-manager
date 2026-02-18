@@ -2,20 +2,17 @@
 import AppHeader from '@/widgets/header/AppHeader.vue'
 import AppFooter from '@/widgets/footer/AppFooter.vue'
 import AppMessage from '@/shared/ui/app-message/AppMessage.vue'
-
-import { RouterView } from 'vue-router'
+import AppModalHost from '@/widgets/modal-host/AppModalHost.vue'
+import AppMain from '@/widgets/main/AppMain.vue'
 </script>
 
 <template>
-  <div class="wrapper flex flex-col min-h-screen relative">
-    <app-header class="sticky top-0 z-1"></app-header>
-    <main class="main px-1 py-8 gorw">
-      I am main cointent
-      <router-view />
-    </main>
-    <app-footer class="mt-auto bg-red-50 px-1 py-4"></app-footer>
-    <app-message />
-  </div>
+  <app-header></app-header>
+  <app-main></app-main>
+  <app-footer></app-footer>
+
+  <app-message />
+  <app-modal-host />
 </template>
 
 <style scoped></style>

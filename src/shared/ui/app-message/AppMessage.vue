@@ -5,17 +5,19 @@ const messageStore = useMessageStore()
 
 <template>
   <Transition name="fade">
-    <div
-      v-if="messageStore.isVisible"
-      class="fixed bottom-6 right-6 px-4 py-3 rounded-xl shadow-lg text-white z-0"
-      :class="{
-        'bg-green-400': messageStore.type === 'success',
-        'bg-red-400': messageStore.type === 'error',
-        'bg-gray-500': messageStore.type === 'info',
-      }"
-    >
-      {{ messageStore.text }}
-    </div>
+    <teleport to="#messages">
+      <div
+        v-if="messageStore.isVisible"
+        class="fixed bottom-8 left-8 px-4 py-3 rounded-xl shadow-lg text-white z-1000"
+        :class="{
+          'bg-green-400': messageStore.type === 'success',
+          'bg-red-400': messageStore.type === 'error',
+          'bg-yellow-500': messageStore.type === 'info',
+        }"
+      >
+        {{ messageStore.text }}
+      </div>
+    </teleport>
   </Transition>
 </template>
 

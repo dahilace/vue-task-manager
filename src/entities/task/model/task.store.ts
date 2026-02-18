@@ -15,6 +15,10 @@ export const useTaskStore = defineStore('tasks', {
     async fetchByProjectId(projectId: string) {
       this.isLoading = true
 
+      const delay = async () => {
+        return new Promise(res => setTimeout(res, 500))
+      }
+      await delay()
       this.error = null
       try {
         const { data } = await http.get<ITask[]>('/tasks/?projectId=' + projectId)

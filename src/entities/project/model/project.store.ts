@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import http from '@/shared/api/http'
 import type { IProject, IProjectState } from '@/entities/project/model/project.types'
 import { createProject, deleteProject } from '../api/project.api'
+import { taskApi } from '@/shared/api/task.api'
+
 
 export const useProjectStore = defineStore('projects', {
   state: (): IProjectState => ({
@@ -60,6 +62,7 @@ export const useProjectStore = defineStore('projects', {
       this.projects.splice(index, 1)
 
       try {
+        await taskApi.deleteAll(id)
         await deleteProject(id)
       }
       catch (e) {

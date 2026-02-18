@@ -1,0 +1,9 @@
+@layer utils {
+  .text-fluid {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+  }
+
+  .text-fluid-lg {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+}

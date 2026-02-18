@@ -11,7 +11,7 @@ defineProps<{
 <template>
   <component
     :is="tag || 'div'"
-    class="flex flex-col gap-4 px-4 py-2 list-none counter-reset"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full list-none counter-reset"
   >
     <project-item
       tag="li"
@@ -34,9 +34,9 @@ defineProps<{
 .counter-item::before {
   content: counter(item);
   position: absolute;
-  top: 4px;
-  left: 4px;
-  font: 1em sans-serif;
+  top: 12px;
+  right: 12px;
+  font: .8em sans-serif;
   opacity: 0.5;
 }
 </style>
