@@ -16,13 +16,13 @@ onMounted(() => {
 
 <template>
   <div class="my-10">
-    <div class="flex items-center justify-between mb-6">
+    <div class="container mx-auto flex items-center justify-between mb-6">
       <h2 class="text-3xl font-semibold mb-6 text-center">Projects:</h2>
       <p v-if="!projectStore.isLoading">Projects amount: {{ projectStore.projects.length }}</p>
       <teleport to="#btns"
         ><app-btn
           @click.prevent="modalStore.showModal('create')"
-          class="fixed bottom-24 right-8 z-50"
+          class="fixed bottom-24 right-8 z-50 sm:block hidden"
           >Add new project</app-btn
         >
       </teleport>
@@ -31,7 +31,7 @@ onMounted(() => {
       <div v-if="projectStore.isLoading">Loading projects...</div>
       <div v-else-if="projectStore.error">Error loading projects: {{ projectStore.error }}</div>
       <div v-else-if="projectStore.projects.length === 0">Projects list is empty!</div>
-      <div v-else class="max-w-6xl mx-auto px-6 space-y-8 w-full">
+      <div v-else class="max-w-6xl mx-auto space-y-8 w-full">
         <project-list tag="ul" :projects="projectStore.projects"></project-list>
       </div>
     </div>

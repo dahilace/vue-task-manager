@@ -23,7 +23,7 @@ const submit = async () => {
 
 <template>
   <div class="pt-4 border-t border-zinc-200">
-    <form class="flex items-center gap-3" @submit.prevent="submit">
+    <form class="flex flex-wrap items-center justify-center gap-3" @submit.prevent="submit">
       <input
         v-model="title"
         type="text"

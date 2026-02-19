@@ -8,7 +8,7 @@ const modalStore = useModalStore()
 
 <template>
   <header class="sticky top-0 z-50 bg-white border-b border-zinc-200 shadow-sm">
-    <div class="flex items-center justify-between px-6 py-4">
+    <div class="container mx-auto flex items-center justify-between gap-3 px-6 py-4">
       <p class="text-sm text-zinc-500">I am header</p>
       <router-link class="text-xl font-semibold text-zinc-800" to="/">
         <app-logo />
